@@ -1,0 +1,101 @@
+----------------------------- https://www.youtube.com/watch?v=rVAqh-VDw2o&list=PLbuI9mmWSoUGBGKrD5W4xYVs6zdt9rW_k&index=17 -------------------
+ THIS IS FOR AUTHORIZATION-CODE ::
+ --------------------------------
+open postman and follow the below steps ::
+#1 : Let GET , POST, PUT etc let it blank
+#2 : Type : OAuth2.0
+#3 : Grant Type : Authorization Code (with PKCE)
+#4 : Callback URL : http://127.0.0.1:8080/login/oauth2/code/client and uncheck Authorize using browser
+#5 : Auth URL : http://localhost:9000/oauth2/authorize
+#6 : Access Token URL : http://localhost:9000/oauth2/token
+#7 : Client ID : client
+#8 : Client Secret : secret
+#9 : Code Challenge Method : SHA-256
+#10 : Code Verifier : let it blank
+#11 : Scope : give all scopes in this case openid read profile
+#12 : State : let it blank
+#13 : Client Authentication : Send as Basic Auth Header
+#14 : click on Get New Access Token
+#15 : username : database user name
+      password : database user password
+----------------------------------------------------------END-------------------------------------------------------------------------
+
+
+ THIS IS FOR CLIENT-CREDENTIALS ::
+ --------------------------------
+#1) Type : OAuth2.0
+#2) Grant Type : Client Credentials
+#3) Access Token URL : http://localhost:9000/oauth2/token
+#4) Client ID : client
+#5) Client Secret : secret
+#6) Scope : openid read profile
+#7) click on Get New Access Token
+----------------------------------------------------------END-------------------------------------------------------------------------
+
+ THIS IS FOR JWKS ::
+ --------------------------------
+#1) GET http://localhost:9000/oauth2/jwks
+
+
+----------------------------------------------------------END-------------------------------------------------------------------------
+
+
+ THIS IS FOR AUTHORIZATION-SERVER-INFO ::
+ ----------------------------------------
+#1) GET http://localhost:9000/.well-known/oauth-authorization-server
+
+
+----------------------------------------------------------END-------------------------------------------------------------------------
+
+ THIS IS FOR OPENID-INFO ::
+ ----------------------------------------
+#1) GET http://localhost:9000/.well-known/openid-configuration
+
+----------------------------------------------------------END-------------------------------------------------------------------------
+
+ THIS IS FOR REFRESH-TOKEN ::
+ ----------------------------------------
+#1) POST http://localhost:9000/oauth2/token?grant_type=refresh_token&refresh_token=hOFdipNWHWkcSpHp6s0XItnshnt4dr2wu3dNjRfxpkT7NrwPeHqAcmcx76XEpmH7qFOMp5xjEs8klm2wtOq0yWj26R2ADCQoQNJ8FZeUUH-tq9jdaa81MiADhcB8itG6
+#2) params : grant_type : refresh_token
+#3) params : refresh_token : hOFdipNWHWkcSpHp6s0XItnshnt4dr2wu3dNjRfxpkT7NrwPeHqAcmcx76XEpmH7qFOMp5xjEs8klm2wtOq0yWj26R2ADCQoQNJ8FZeUUH-tq9jdaa81MiADhcB8itG6
+#4) Authorization : Basic Auth
+    -> username : client
+    -> password : secret
+
+----------------------------------------------------------END-------------------------------------------------------------------------
+ THIS IS FOR USER-INFO ::
+ ----------------------------------------
+#1) GET http://localhost:9000/userinfo
+#2) Authorization : Bearer Token
+    -> Token : give access token
+
+----------------------------------------------------------END-------------------------------------------------------------------------
+THIS IS FOR INTROSPECT ::
+----------------------------------------
+#1) POST http://localhost:9000/oauth2/introspect?token=eyJraWQiOiJmNzk3ZWJkNi05NGVlLTRmMGMtODdiNy1mYzI0Zjg2MGUyZDgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJEZXZlbG9wZXIiLCJhdWQiOiJjbGllbnQiLCJuYmYiOjE2ODYyNDI4NjEsIlRlc3QiOiJUZXN0IEFjY2VzcyBUb2tlbiIsInNjb3BlIjpbInJlYWQiLCJvcGVuaWQiLCJwcm9maWxlIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTY4NjMyOTI2MSwiaWF0IjoxNjg2MjQyODYxLCJ1c2VyIjoiRGV2ZWxvcGVyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9ERVZFTE9QRVIiLCJST0xFX1VTRVIiLCJST0xFX0FETUlOIl19.PC0-2bKqjoZSnyQ3-wUTCkPtE-e1bWMWUYHBguYIfYPWKaTXsgC6_wpzp1igE8hk3tL0ekmB_adhN3QxUes8aw_44HYNEyLbFj1ciqMAztowGCz1RfJX4clKnZB09efgfplET7cS83LV9p_6BiDrs8ou5uqMor35UGHwtcfvrkB8FhpDaVHyWEWOzJ2Tr8AXikaRxxdpiPoUy9txisfm_jByZ1A5MK9S6aKC2VOeWjTmXm-h32pJOvcJiJ0a8nppTB2IgeIrKCRlaTclJ1EWdq3FrisyL6GcEt584lgRzpGpup3HkX3Kpn-cm9qOHTfr0pht6sVj8FBIMAmeKzoQyw
+#2) params :
+    -> token : give access token i.e. eyJraWQiOiJmNzk3ZWJkNi05NGVlLTRmMGMtODdiNy1mYzI0Zjg2MGUyZDgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJEZXZlbG9wZXIiLCJhdWQiOiJjbGllbnQiLCJuYmYiOjE2ODYyNDI4NjEsIlRlc3QiOiJUZXN0IEFjY2VzcyBUb2tlbiIsInNjb3BlIjpbInJlYWQiLCJvcGVuaWQiLCJwcm9maWxlIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTY4NjMyOTI2MSwiaWF0IjoxNjg2MjQyODYxLCJ1c2VyIjoiRGV2ZWxvcGVyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9ERVZFTE9QRVIiLCJST0xFX1VTRVIiLCJST0xFX0FETUlOIl19.PC0-2bKqjoZSnyQ3-wUTCkPtE-e1bWMWUYHBguYIfYPWKaTXsgC6_wpzp1igE8hk3tL0ekmB_adhN3QxUes8aw_44HYNEyLbFj1ciqMAztowGCz1RfJX4clKnZB09efgfplET7cS83LV9p_6BiDrs8ou5uqMor35UGHwtcfvrkB8FhpDaVHyWEWOzJ2Tr8AXikaRxxdpiPoUy9txisfm_jByZ1A5MK9S6aKC2VOeWjTmXm-h32pJOvcJiJ0a8nppTB2IgeIrKCRlaTclJ1EWdq3FrisyL6GcEt584lgRzpGpup3HkX3Kpn-cm9qOHTfr0pht6sVj8FBIMAmeKzoQyw
+
+#3) Authorization : Basic Auth
+    -> username : client
+    -> password : secret
+
+----------------------------------------------------------END-------------------------------------------------------------------------
+THIS IS FOR REVOKE ::
+----------------------------------------
+#1) POST http://localhost:9000/oauth2/revoke?token=eyJraWQiOiJmNzk3ZWJkNi05NGVlLTRmMGMtODdiNy1mYzI0Zjg2MGUyZDgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJEZXZlbG9wZXIiLCJhdWQiOiJjbGllbnQiLCJuYmYiOjE2ODYyNDI4NjEsIlRlc3QiOiJUZXN0IEFjY2VzcyBUb2tlbiIsInNjb3BlIjpbInJlYWQiLCJvcGVuaWQiLCJwcm9maWxlIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTY4NjMyOTI2MSwiaWF0IjoxNjg2MjQyODYxLCJ1c2VyIjoiRGV2ZWxvcGVyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9ERVZFTE9QRVIiLCJST0xFX1VTRVIiLCJST0xFX0FETUlOIl19.PC0-2bKqjoZSnyQ3-wUTCkPtE-e1bWMWUYHBguYIfYPWKaTXsgC6_wpzp1igE8hk3tL0ekmB_adhN3QxUes8aw_44HYNEyLbFj1ciqMAztowGCz1RfJX4clKnZB09efgfplET7cS83LV9p_6BiDrs8ou5uqMor35UGHwtcfvrkB8FhpDaVHyWEWOzJ2Tr8AXikaRxxdpiPoUy9txisfm_jByZ1A5MK9S6aKC2VOeWjTmXm-h32pJOvcJiJ0a8nppTB2IgeIrKCRlaTclJ1EWdq3FrisyL6GcEt584lgRzpGpup3HkX3Kpn-cm9qOHTfr0pht6sVj8FBIMAmeKzoQywauu
+#2) params :
+    -> token : give access token i.e. eyJraWQiOiJmNzk3ZWJkNi05NGVlLTRmMGMtODdiNy1mYzI0Zjg2MGUyZDgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJEZXZlbG9wZXIiLCJhdWQiOiJjbGllbnQiLCJuYmYiOjE2ODYyNDI4NjEsIlRlc3QiOiJUZXN0IEFjY2VzcyBUb2tlbiIsInNjb3BlIjpbInJlYWQiLCJvcGVuaWQiLCJwcm9maWxlIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTY4NjMyOTI2MSwiaWF0IjoxNjg2MjQyODYxLCJ1c2VyIjoiRGV2ZWxvcGVyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9ERVZFTE9QRVIiLCJST0xFX1VTRVIiLCJST0xFX0FETUlOIl19.PC0-2bKqjoZSnyQ3-wUTCkPtE-e1bWMWUYHBguYIfYPWKaTXsgC6_wpzp1igE8hk3tL0ekmB_adhN3QxUes8aw_44HYNEyLbFj1ciqMAztowGCz1RfJX4clKnZB09efgfplET7cS83LV9p_6BiDrs8ou5uqMor35UGHwtcfvrkB8FhpDaVHyWEWOzJ2Tr8AXikaRxxdpiPoUy9txisfm_jByZ1A5MK9S6aKC2VOeWjTmXm-h32pJOvcJiJ0a8nppTB2IgeIrKCRlaTclJ1EWdq3FrisyL6GcEt584lgRzpGpup3HkX3Kpn-cm9qOHTfr0pht6sVj8FBIMAmeKzoQywauu
+#3) Authorization : Basic Auth
+    -> username : client
+    -> password : secret
+----------------------------------------------------------END-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
